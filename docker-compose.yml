@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  backend:
+    build: ./
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: test
+    ports:
+      - 5432:5432
+  adminer:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - 5050:80
