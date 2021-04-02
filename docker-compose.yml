@@ -9,6 +9,8 @@ services:
       - ./src:/app/src
     depends_on:
       - db
+    environment:
+      JWT_SECRET: examplesecret
   db:
     image: postgres
     restart: always

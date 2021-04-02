@@ -1,7 +1,7 @@
+import { UserEntity } from './models/user.model';
+import { UserModule } from './user/user.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -12,12 +12,11 @@ import { AppService } from './app.service';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [],
+      entities: [UserEntity],
       keepConnectionAlive: true,
       synchronize: true,
     }),
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
